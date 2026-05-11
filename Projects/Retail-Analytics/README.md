@@ -1,0 +1,20 @@
+# Omnichannel Retail Sales & Inventory Analytics Dashboard
+
+## Business Problem
+Unify offline POS + online store data to track sales trends, forecast inventory, identify top products.
+
+## Tech Stack
+- **Data Cleaning:** Python Pandas, Excel
+- **Database:** MySQL/PostgreSQL 
+- **Visualization:** Power BI / Tableau
+- **Version Control:** Git, GitHub
+
+## Week 1 Tasks
+1. Setup GitHub repo structure
+2. Download retail sales dataset
+3. Data cleaning with Pandas
+4. Handle NULL values & duplicates
+5. Standardize date/time formats
+
+## Evaluation Requirement
+Daily 3-5 GitHub commits mandatory for 4 weeks per Infotact guidelines.
