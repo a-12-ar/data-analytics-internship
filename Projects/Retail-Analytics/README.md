@@ -16,5 +16,3 @@ Unify offline POS + online store data to track sales trends, forecast inventory,
 4. Handle NULL values & duplicates
 5. Standardize date/time formats
 
-## Evaluation Requirement
-Daily 3-5 GitHub commits mandatory for 4 weeks per Infotact guidelines.
