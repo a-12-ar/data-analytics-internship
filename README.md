@@ -29,5 +29,6 @@ Aspiring Data Analyst | Learning Python, SQL, Excel & Power BI to solve real bus
 - ⏳ Next: Python basics + First dataset analysis
 
 **Weekly Goal:** Complete Python fundamentals by May 17, 2026
+
 ## 📞 Connect With Me
 Email: akhilareddy0168@gmail.com
