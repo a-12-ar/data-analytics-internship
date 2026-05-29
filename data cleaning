@@ -1,0 +1,42 @@
+from pathlib import Path
+import pandas as pd
+import numpy as np
+
+input_path = Path('/mnt/data/Dataset1.csv')
+
+# Read dataset
+df = pd.read_csv(input_path)
+
+# Basic cleaning
+cleaned = df.copy()
+
+# Remove duplicate rows
+cleaned = cleaned.drop_duplicates()
+
+# Strip spaces from column names
+cleaned.columns = [col.strip() for col in cleaned.columns]
+
+# Clean string columns
+for col in cleaned.select_dtypes(include='object').columns:
+    cleaned[col] = cleaned[col].astype(str).str.strip()
+    cleaned[col] = cleaned[col].replace(['', 'nan', 'None'], np.nan)
+
+# Fill missing numeric values with median
+for col in cleaned.select_dtypes(include=[np.number]).columns:
+    cleaned[col] = cleaned[col].fillna(cleaned[col].median())
+
+# Fill missing text values with mode
+for col in cleaned.select_dtypes(include='object').columns:
+    if cleaned[col].isna().any():
+        mode_val = cleaned[col].mode()
+        if not mode_val.empty:
+            cleaned[col] = cleaned[col].fillna(mode_val[0])
+
+# Save cleaned file
+output_path = '/mnt/data/Cleaned_Dataset1.xlsx'
+with pd.ExcelWriter(output_path, engine='openpyxl') as writer:
+    cleaned.to_excel(writer, index=False, sheet_name='Cleaned_Data')
+
+print("Original shape:", df.shape)
+print("Cleaned shape:", cleaned.shape)
+print("Saved cleaned dataset to:", output_path)

@@ -1,0 +1,88 @@
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Preformatted, Table, TableStyle
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.pagesizes import letter
+from reportlab.lib import colors
+import pandas as pd
+
+# Load dataset
+file_path = "/mnt/data/Dataset1.csv"
+df = pd.read_csv(file_path)
+
+rows, cols = df.shape
+columns = list(df.columns)
+
+styles = getSampleStyleSheet()
+
+pdf_path = "/mnt/data/Week2_SQL_Report.pdf"
+doc = SimpleDocTemplate(pdf_path, pagesize=letter)
+
+elements = []
+
+# Title
+elements.append(Paragraph("Week 2: Relational Database Design and SQL Aggregations", styles['Title']))
+elements.append(Spacer(1, 12))
+
+# Introduction
+intro = f"""
+This report explains the implementation of SQL aggregation and relational database analysis 
+performed on the cleaned dataset. The dataset contains {rows} rows and {cols} columns.
+The project includes SQL queries using GROUP BY, ORDER BY, SUM(), AVG(), and COUNT() 
+to generate business insights.
+"""
+elements.append(Paragraph(intro, styles['BodyText']))
+elements.append(Spacer(1, 12))
+
+# Dataset columns table
+elements.append(Paragraph("Dataset Structure", styles['Heading2']))
+
+table_data = [["Column Names"]]
+for col in columns:
+    table_data.append([col])
+
+table = Table(table_data, colWidths=[420])
+table.setStyle(TableStyle([
+    ('BACKGROUND', (0, 0), (-1, 0), colors.lightblue),
+    ('GRID', (0, 0), (-1, -1), 1, colors.black),
+    ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+]))
+elements.append(table)
+elements.append(Spacer(1, 15))
+
+# SQL Queries Section
+elements.append(Paragraph("SQL Queries Implemented", styles['Heading2']))
+
+queries = [
+    ("1. Total Revenue",
+"""SELECT SUM(Sales) AS Total_Revenue
+FROM sales_data;"""),
+
+    ("2. Best-Selling Products by Volume",
+"""SELECT Product_Name, SUM(Quantity) AS Total_Quantity
+FROM sales_data
+GROUP BY Product_Name
+ORDER BY Total_Quantity DESC;"""),
+
+    ("3. Geographic Sales Distribution",
+"""SELECT Region, SUM(Sales) AS Regional_Sales
+FROM sales_data
+GROUP BY Region
+ORDER BY Regional_Sales DESC;"""),
+
+    ("4. Average Sales by Category",
+"""SELECT Category, AVG(Sales) AS Average_Sales
+FROM sales_data
+GROUP BY Category
+ORDER BY Average_Sales DESC;"""),
+
+    ("5. Total Orders by Segment",
+"""SELECT Segment, COUNT(Order_ID) AS Total_Orders
+FROM sales_data
+GROUP BY Segment;""")
+]
+
+for title, query in queries:
+    elements.append(Paragraph(title, styles['Heading3']))
+    elements.append(Preformatted(query, styles['Code']))
+    elements.append(Spacer(1, 10))
+
+
