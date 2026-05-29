@@ -2,7 +2,7 @@ import pandas as pd
 
 # Read Excel file
 df = pd.read_excel(
-    r"C:\Users\sneha\OneDrive\Desktop\new folder\dataset.csv.xlsx",
+    r"C:\Users\sneha\OneDrive\Desktop\new folder\dataset.xlsx",
     engine="openpyxl"
 )
 
