@@ -1,0 +1,4 @@
+Recommendations:
+1. Automate data cleaning for weekly reports
+2. Add more filters in dashboard
+3. Track sales daily instead of weekly
