@@ -23,14 +23,12 @@ Aspiring Data Analyst | Learning Python, SQL, Excel & Power BI to solve real bus
 6. **End-to-End Project** - Complete analysis + insights
 
 ## 📊 Current Status
-
-**May 10, 2026**
-- ✅ Day 1: Git & GitHub setup complete
-- ✅ Repository created with professional structure
-- ⏳ Next: Python basics + First dataset analysis
-
-**Weekly Goal:** Complete Python fundamentals by May 17, 2026
-
+- ✅ Week 1: Data cleaning with Python + Pandas
+- ✅ Week 2: SQL queries for business metrics  
+- ✅ Week 3: Power BI dashboard with bar chart, slicer, filters
+- ✅ Week 4: Final report + insights + recommendations
+- 
 ## 📞 Connect With Me
 Email: akhilareddy0168@gmail.com
+
 
